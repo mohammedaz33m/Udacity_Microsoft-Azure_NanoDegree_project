@@ -53,7 +53,7 @@ x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.20, random_s
 
 run = Run.get_context()
 
-
+import joblib
 
 def main():
     # Add arguments to script
@@ -71,6 +71,15 @@ def main():
 
     Accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(Accuracy))
+
+    os.makedirs('outputs', exist_ok=True)
+    joblib.dump(value=model, filename='outputs/model.pkl')
+    
+    best_run = hyperdrive_run.get_best_run_by_primary_metric()
+
+    model = best_run.register_model(model_name='hyperdrive_model', model_path='./outputs/model.pkl')
+
+
 
 if __name__ == '__main__':
     main()
