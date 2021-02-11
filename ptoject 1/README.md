@@ -6,9 +6,14 @@ In this project, we build and optimize an Azure ML pipeline using the Python SDK
 This model is then compared to an Azure AutoML run.
 
 ## Summary
-**In 1-2 sentences, explain the problem statement: e.g "This dataset contains data about... we seek to predict..."**
+- The Data set used here is from a Banking sector. 
 
-**In 1-2 sentences, explain the solution: e.g. "The best performing model was a ..."**
+- The main goal of the project is to classify whether a customer will subscribe to a term deposit or not, here 'y' being the dependant variable.
+
+- Please click here to get the Data Set: "https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv"
+
+- The best performing model gave Accuracy of 90.72%, via the AutoML Configurations.
+
 
 ## Scikit-learn Pipeline
 **Explain the pipeline architecture, including data, hyperparameter tuning, and classification algorithm.**
