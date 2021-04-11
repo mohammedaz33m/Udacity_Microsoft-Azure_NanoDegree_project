@@ -43,8 +43,10 @@ def clean_data(data):
     
     return x_df, y_df
 
-url = 'https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv'
-ds = TabularDatasetFactory.from_delimited_files(path=url)
+
+ds = TabularDatasetFactory.from_delimited_files("https://automlsamplenotebookdata.blob.core.windows.net/automl-sample-notebook-data/bankmarketing_train.csv")
+
+
 
 x, y = clean_data(ds)
 
@@ -72,14 +74,12 @@ def main():
     Accuracy = model.score(x_test, y_test)
     run.log("Accuracy", np.float(Accuracy))
 
-    os.makedirs('outputs', exist_ok=True)
-    joblib.dump(value=model, filename='outputs/model.pkl')
-    
-    best_run = hyperdrive_run.get_best_run_by_primary_metric()
+    os.makedirs('./outputs', exist_ok=True)
+    joblib.dump(value=model, filename='outputs/model.joblib')
 
-    model = best_run.register_model(model_name='hyperdrive_model', model_path='./outputs/model.pkl')
+    # best_run = hyperdrive_run.get_best_run_by_primary_metric()
 
-
+    # model = best_run.register_model(model_name='hyperdrive_model', model_path='./outputs/model.joblib')
 
 if __name__ == '__main__':
     main()
